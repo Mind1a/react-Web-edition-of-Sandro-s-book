@@ -4,5 +4,7 @@ import { motion } from "framer-motion";
 export const SLoader = styled(motion.div)`
     min-height: 100vh;
     position: fixed;
-    background-color: gray;
+    left: 0;
+    top: 0;
+    background-color: #181818;
 `;
