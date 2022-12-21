@@ -1,10 +1,10 @@
-import { SLoader } from "./Loading.styled";
+import { motion } from "framer-motion";
 
 export const Loader = () => {
   return (
-    <SLoader
+    <motion.div
       animate={{ width: ["0%", "100%", "50%"] }}
       transition={{ delay: 1, duration: 2 }}
-    ></SLoader>
+    ></motion.div>
   );
 };
