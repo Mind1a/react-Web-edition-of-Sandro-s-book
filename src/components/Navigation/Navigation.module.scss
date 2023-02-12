@@ -1,0 +1,46 @@
+@import '../../scss/mixins';
+
+.navigation {
+  display: absolute;
+  left: 0;
+  top: 0;
+  width: fit-content;
+  margin: 40px;
+}
+
+.navGroup {
+  position: relative;
+  margin-top: 1rem;
+
+  & a,
+  & button {
+    position: absolute;
+    display: flex;
+    cursor: pointer;
+  }
+}
+
+.buttonIcon {
+  @include position(50%, 50%, $centered: true);
+}
+
+.burgerButton {
+  all: unset;
+  left: 0;
+  top: 0;
+}
+
+.shareLink {
+  left: 63px;
+  top: 0;
+}
+
+.facebookLink {
+  left: 4px;
+  top: 61px;
+}
+
+.instagramLink {
+  left: 58px;
+  top: 57px;
+}

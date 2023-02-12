@@ -1,10 +1,14 @@
-import "./App.scss";
-import { Loader } from "./components/Loader";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Home } from "./views/Home";
+import "./scss/global.scss";
+
 function App() {
   return (
-    <div className="App">
-      <Loader />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
