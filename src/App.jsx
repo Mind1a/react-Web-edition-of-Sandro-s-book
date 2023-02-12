@@ -1,12 +1,14 @@
-import "./App.scss";
-import { Loader } from "./components/Loader";
-import { Navigation } from "./components/Navigation/Navigation";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Home } from "./views/Home";
+import "./scss/global.scss";
+
 function App() {
   return (
-    <div className="App">
-      <Loader width={"50%"} />
-      <Navigation />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

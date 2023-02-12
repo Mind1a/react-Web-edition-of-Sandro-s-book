@@ -1,3 +1,5 @@
+@import '../../scss/mixins';
+
 .navigation {
   display: absolute;
   left: 0;
@@ -19,10 +21,7 @@
 }
 
 .buttonIcon {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  @include position(50%, 50%, $centered: true);
 }
 
 .burgerButton {

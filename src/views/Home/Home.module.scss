@@ -1,0 +1,21 @@
+@import "../../scss/mixins";
+
+.eyeIcon {
+  @include position(50%, 50%, $centered: true);
+}
+
+.playIcon {
+  @include position(50%, 59%, $centered: true);
+  width: 114px;
+  height: 114px;
+}
+
+.playText {
+  @include position(50%, 70%, $centered: true);
+  color: #fff;
+  mix-blend-mode: difference;
+}
+
+.cosmosText {
+  @include position($right: 3%, $bottom: 12%);
+}

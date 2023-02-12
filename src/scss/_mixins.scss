@@ -1,0 +1,11 @@
+@mixin position($left: null, $top:null, $position: absolute, $centered: false, $right:null, $bottom:null){
+  position: $position;
+  left: $left;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+
+  @if $centered{
+    transform: translate(-50%, -50%);
+  }
+}
