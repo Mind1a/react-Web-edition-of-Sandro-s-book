@@ -1,11 +1,12 @@
 import { motion } from "framer-motion";
 import styles from "./Loader.module.scss";
-export const Loader = () => {
+export const Loader = ({ width }) => {
   return (
     <motion.div
       className={styles.loaderAnimation}
-      animate={{ width: ["100%", "0%"] }}
-      transition={{ delay: 1, duration: 1 }}
+      initial={{ width: "0%" }}
+      animate={{ width: width }}
+      transition={{ duration: .5 }}
     ></motion.div>
   );
 };

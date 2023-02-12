@@ -1,0 +1,47 @@
+.navigation {
+  display: absolute;
+  left: 0;
+  top: 0;
+  width: fit-content;
+  margin: 40px;
+}
+
+.navGroup {
+  position: relative;
+  margin-top: 1rem;
+
+  & a,
+  & button {
+    position: absolute;
+    display: flex;
+    cursor: pointer;
+  }
+}
+
+.buttonIcon {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.burgerButton {
+  all: unset;
+  left: 0;
+  top: 0;
+}
+
+.shareLink {
+  left: 63px;
+  top: 0;
+}
+
+.facebookLink {
+  left: 4px;
+  top: 61px;
+}
+
+.instagramLink {
+  left: 58px;
+  top: 57px;
+}
