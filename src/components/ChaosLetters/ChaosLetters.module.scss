@@ -1,0 +1,28 @@
+@import "../../scss/mixins.scss";
+.letterGroup {
+  @include position(10%, 80%);
+  transform: translate(-10%, -80%);
+  mix-blend-mode: difference;
+  img {
+    mix-blend-mode: difference;
+    filter: invert(1);
+    margin-left: 3px;
+  }
+}
+
+.letterBoldO {
+  margin-bottom: -30px;
+  transform: translate(0, 0);
+}
+
+.letterI {
+  margin-bottom: 20px;
+}
+
+.letterD {
+  margin-bottom: -30px;
+}
+
+.letterA {
+  margin-bottom: -10px;
+}
