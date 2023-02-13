@@ -3,17 +3,21 @@ import { Loader } from "../../components/Loader/Loader";
 import { Navigation } from "../../components/Navigation";
 import styles from "./Home.module.scss";
 import { motion } from "framer-motion";
+import ChaosLetters from "../../components/ChaosLetters/ChaosLetters";
 export const Home = () => {
   return (
     <div>
       <Loader width={["100%", "0%", "0%", "50%"]} />
+      <ChaosLetters transition={{ delay: 1.5 }} />
+
       <motion.img
         initial={{ opacity: 0 }}
-        animate={{ opacity: [0, 0, 1, 1, 0] }}
-        transition={{ duration: 1.5 }}
+        animate={{ opacity: [0, 1, 0] }}
+        transition={{ delay: 0.6, duration: 0.8 }}
         className={styles.eyeIcon}
         src="assets/svgs/generic/loader-icon.svg"
       />
+
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
