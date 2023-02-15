@@ -6,7 +6,7 @@ export const Loader = ({ width }) => {
       className={styles.loaderAnimation}
       initial={{ width: "0%" }}
       animate={{ width: width }}
-      transition={{ duration: 2}}
+      transition={{ duration: 1 }}
     ></motion.div>
   );
 };
