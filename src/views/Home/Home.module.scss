@@ -8,6 +8,12 @@
   @include position(50%, 59%, $centered: true);
   width: 114px;
   height: 114px;
+  background-color: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  img{
+    scale: 1.03;
+  }
 }
 
 .playText {
