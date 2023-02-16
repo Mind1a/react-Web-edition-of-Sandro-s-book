@@ -61,7 +61,7 @@ export const Contents = () => {
             className={styles.contentChapter}
           >
             {ContentsData.map(({ id, src, title, route }) => (
-              <div className={styles.Chapter}>
+              <div key={id} className={styles.Chapter}>
                 <Link className={styles.chapterRoute} to={route} key={id}>
                   <img src={src} alt={src} />
                   <span>{title}</span>

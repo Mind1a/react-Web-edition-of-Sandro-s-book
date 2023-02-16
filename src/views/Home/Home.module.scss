@@ -2,6 +2,8 @@
 
 .eyeIcon {
   @include position(50%, 50%, $centered: true);
+  mix-blend-mode: difference;
+  filter: invert(1);
 }
 
 .playIcon {
