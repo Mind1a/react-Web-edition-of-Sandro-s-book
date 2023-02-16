@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Loader } from "../../components/Loader/Loader";
 import { ContentsData } from "../../data";
+import { useNavigate } from "react-router-dom";
 
 const contentVariants = {
   visible: {
@@ -16,6 +17,7 @@ const contentVariants = {
 };
 export const Contents = () => {
   const [contentPart, setContentPart] = useState("content");
+  const navigate = useNavigate();
 
   return (
     <div className={styles.contentPage}>
@@ -50,7 +52,7 @@ export const Contents = () => {
         </motion.div>
       </div>
       <div className={styles.contentContainer}>
-        <div className={styles.closeContent}>
+        <div className={styles.closeContent} onClick={()=>navigate(-1)}>
           <img src="assets/svgs/content-chapter-svg/closeBtn.svg" alt="" />
         </div>
         {contentPart === "content" && (
@@ -60,7 +62,7 @@ export const Contents = () => {
             transition={{ duration: 0.5 }}
             className={styles.contentChapter}
           >
-            {ContentsData.map(({ id, src, title, route }) => (
+            {Object.entries(ContentsData).map(([id, { src, title, route }]) => (
               <div key={id} className={styles.Chapter}>
                 <Link className={styles.chapterRoute} to={route} key={id}>
                   <img src={src} alt={src} />

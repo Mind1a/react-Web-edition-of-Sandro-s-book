@@ -2,6 +2,9 @@ import React from "react";
 import styles from "./Navigation.module.scss";
 import { motion } from "framer-motion";
 import { iconVariants } from "./Navigation.variants";
+import { Link } from "react-router-dom";
+
+const MotionLink = motion(Link);
 
 export const Navigation = () => {
   return (
@@ -10,7 +13,8 @@ export const Navigation = () => {
         <img src="assets/svgs/social-links/publish-icon.svg" />
       </a>
       <div className={styles.navGroup}>
-        <motion.button
+        <MotionLink
+          to="/contents"
           initial="idle"
           whileHover="hovered"
           className={styles.burgerButton}
@@ -21,7 +25,7 @@ export const Navigation = () => {
             src="assets/svgs/social-links/burger.svg"
           />
           <img src="assets/svgs/social-links/burger-button.svg" />
-        </motion.button>
+        </MotionLink>
         <motion.a
           href="https://sandroasatiani.com/"
           target="_blank"
