@@ -4,10 +4,14 @@ import { Navigation } from "../../components/Navigation";
 import styles from "./Home.module.scss";
 import { motion } from "framer-motion";
 import ChaosLetters from "../../components/ChaosLetters/ChaosLetters";
+import { Link } from "react-router-dom";
 export const Home = () => {
   return (
     <div>
-      <Loader width={["100%", "0%", "0%", "50%"]} />
+      <Loader
+        width={["100%", "0%", "0%", "50%"]}
+        transition={{ duration: 2.6 }}
+      />
       <ChaosLetters transition={{ delay: 1.5 }} />
 
       <motion.img
@@ -25,10 +29,12 @@ export const Home = () => {
       >
         <Navigation />
 
-        <img
-          className={styles.playIcon}
-          src="assets/svgs/generic/playbutton-light.svg"
-        />
+        <Link to="/books/shexvedra-leviatantan" className={styles.playIcon}>
+          <motion.img
+            whileHover={{ opacity: 0.45 }}
+            src="assets/svgs/generic/playbutton-light.svg"
+          />
+        </Link>
         <span className={styles.playText}>დაწყება</span>
         <motion.span
           initial={{ right: "3%", bottom: "12%", fontSize: "4.5rem" }}

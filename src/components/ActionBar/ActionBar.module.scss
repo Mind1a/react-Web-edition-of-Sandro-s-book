@@ -1,0 +1,35 @@
+@import "../../scss/mixins";
+
+.actionBar {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  margin: 40px;
+  margin-top: 1rem;
+  gap: 1rem;
+}
+
+.button {
+  all: unset;
+  position: relative;
+  cursor: pointer;
+  z-index: 1;
+  width: fit-content;
+}
+
+.rightArrow,
+.leftArrow {
+  margin: 12px 6px;
+}
+
+.rightArrow {
+  @include position($right: 0, $bottom: 0);
+}
+
+.leftArrow {
+  @include position(0, 0);
+}
+
+.icon {
+  @include position(50%, 50%, $centered: true);
+}

@@ -2,15 +2,19 @@ import React from "react";
 import styles from "./Navigation.module.scss";
 import { motion } from "framer-motion";
 import { iconVariants } from "./Navigation.variants";
+import { Link } from "react-router-dom";
+
+const MotionLink = motion(Link);
 
 export const Navigation = () => {
   return (
     <nav className={styles.navigation}>
       <a href="/" className={styles.homeLink}>
-        <img src="assets/svgs/social-links/publish-icon.svg" />
+        <img src="/assets/svgs/social-links/publish-icon.svg" />
       </a>
       <div className={styles.navGroup}>
-        <motion.button
+        <MotionLink
+          to="/contents"
           initial="idle"
           whileHover="hovered"
           className={styles.burgerButton}
@@ -18,10 +22,10 @@ export const Navigation = () => {
           <motion.img
             variants={iconVariants}
             className={styles.buttonIcon}
-            src="assets/svgs/social-links/burger.svg"
+            src="/assets/svgs/social-links/burger.svg"
           />
-          <img src="assets/svgs/social-links/burger-button.svg" />
-        </motion.button>
+          <img src="/assets/svgs/social-links/burger-button.svg" />
+        </MotionLink>
         <motion.a
           href="https://sandroasatiani.com/"
           target="_blank"
@@ -32,11 +36,11 @@ export const Navigation = () => {
           <motion.img
             variants={iconVariants}
             className={styles.buttonIcon}
-            src="assets/svgs/social-links/share.svg"
+            src="/assets/svgs/social-links/share.svg"
           />
           <img
             className={styles.shareButton}
-            src="assets/svgs/social-links/share-button.svg"
+            src="/assets/svgs/social-links/share-button.svg"
           />
         </motion.a>
         <motion.a
@@ -49,9 +53,9 @@ export const Navigation = () => {
           <motion.img
             variants={iconVariants}
             className={styles.buttonIcon}
-            src="assets/svgs/social-links/facebook.svg"
+            src="/assets/svgs/social-links/facebook.svg"
           />
-          <img src="assets/svgs/social-links/facebook-button.svg" />
+          <img src="/assets/svgs/social-links/facebook-button.svg" />
         </motion.a>
 
         <motion.a
@@ -64,11 +68,11 @@ export const Navigation = () => {
           <motion.img
             variants={iconVariants}
             className={styles.buttonIcon}
-            src="assets/svgs/social-links/instagram.svg"
+            src="/assets/svgs/social-links/instagram.svg"
           />
           <img
             className={styles.instagramButton}
-            src="assets/svgs/social-links/instagram-button.svg"
+            src="/assets/svgs/social-links/instagram-button.svg"
           />
         </motion.a>
       </div>
