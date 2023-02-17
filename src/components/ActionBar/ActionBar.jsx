@@ -3,13 +3,20 @@ import styles from "./ActionBar.module.scss";
 import { motion } from "framer-motion";
 import { iconVariants } from "./ActionBar.variants";
 
-export const ActionBar = ({ isPlaying, onPlayToggle }) => {
+export const ActionBar = ({
+  onPrevClick,
+  onNextClick,
+  isPaused,
+  onPlayToggle,
+}) => {
   return (
     <div className={styles.actionBar}>
-      <motion.button
+      <motion.a
         initial="idle"
         whileHover="hovered"
         className={styles.button}
+        href="/assets/pdf/SandroAsatiani_ChaosidanCosmosamde.pdf"
+        download
       >
         <motion.img
           variants={iconVariants}
@@ -21,7 +28,7 @@ export const ActionBar = ({ isPlaying, onPlayToggle }) => {
           src="/assets/svgs/generic/download-button.svg"
           alt="download pdf button"
         />
-      </motion.button>
+      </motion.a>
       <button className={styles.button}>
         <motion.img
           variants={iconVariants}
@@ -30,6 +37,7 @@ export const ActionBar = ({ isPlaying, onPlayToggle }) => {
           className={styles.leftArrow}
           src="/assets/svgs/generic/left-arrow.svg"
           alt="left arrow"
+          onClick={onPrevClick}
         />
         <motion.img
           variants={iconVariants}
@@ -38,6 +46,7 @@ export const ActionBar = ({ isPlaying, onPlayToggle }) => {
           className={styles.rightArrow}
           src="/assets/svgs/generic/right-arrow.svg"
           alt="right arrow"
+          onClick={onNextClick}
         />
         <img src="/assets/svgs/generic/arrow-button.svg" alt="arrow button" />
       </button>
@@ -45,12 +54,13 @@ export const ActionBar = ({ isPlaying, onPlayToggle }) => {
         initial="idle"
         whileHover="hovered"
         className={styles.button}
+        onClick={onPlayToggle}
       >
         <motion.img
           variants={iconVariants}
           className={styles.icon}
           src={
-            false
+            isPaused
               ? "/assets/svgs/generic/play-icon.svg"
               : "/assets/svgs/generic/pause-icon.svg"
           }

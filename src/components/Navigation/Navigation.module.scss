@@ -31,16 +31,13 @@
 }
 
 .shareLink {
-  margin-left: 2px;
-  margin-top: -4px;
+  transform: translate(2px, -2px);
 }
 
 .facebookLink {
-  margin-left: 4px;
-  margin-bottom: -1px;
+  transform: translate(4px, 1px);
 }
 
 .instagramLink {
-  margin-left: -2px;
-  margin-top: -4px;
+  transform: translate(-1px, -1px);
 }

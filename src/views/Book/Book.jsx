@@ -3,26 +3,29 @@ import { useParams } from "react-router-dom";
 import { Loader } from "../../components/Loader/Loader";
 import { clamp, getTimeLeft, getWidth } from "../../utils/book";
 import styles from "./Book.module.scss";
-import { bookData } from "../../bookData";
+import { bookData, books } from "../../bookData";
 import { Navigation } from "../../components/Navigation";
 import { motion } from "framer-motion";
 import { ActionBar } from "../../components/ActionBar";
+import { useNavigate } from "react-router-dom";
 
 export const Book = () => {
   const { book } = useParams();
+
+  const navigate = useNavigate();
 
   const {
     title,
     illustration,
     audio: audioSrc,
   } = useMemo(() => {
-    console.log("memo");
     return bookData[book];
   }, [book]);
 
   const audio = useMemo(() => new Audio(audioSrc), [book]);
 
   const [isSeeking, setIsSeeking] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
   const [width, setWidth] = useState(0.15);
   const [seekStartTime, setSeekStartTime] = useState(null);
   const [seekTime, setSeekTime] = useState(null);
@@ -32,6 +35,7 @@ export const Book = () => {
   useEffect(() => {
     audio.play().catch((err) => {
       console.log(err);
+      setIsPaused(true);
     });
 
     const handleAudioUpdate = () => {
@@ -50,17 +54,36 @@ export const Book = () => {
       setCurrentTime(audio.duration);
     };
 
+    const handleToggle = () => {
+      setIsPaused(audio.paused);
+    };
+
     audio.addEventListener("timeupdate", handleAudioUpdate);
+    audio.addEventListener("pause", handleToggle);
+    audio.addEventListener("play", handleToggle);
     audio.addEventListener("canplaythrough", handleAudioLoad);
     audio.addEventListener("ended", handleAudioEnd);
 
     return () => {
       audio.pause();
       audio.removeEventListener("timeupdate", handleAudioUpdate);
+      audio.removeEventListener("pause", handleToggle);
+      audio.removeEventListener("play", handleToggle);
       audio.removeEventListener("canplaythrough", handleAudioLoad);
       audio.removeEventListener("ended", handleAudioEnd);
     };
-  }, [book, isSeeking, duration]);
+  }, [audio, book, isSeeking, duration]);
+
+  const handlePlayToggle = () => {
+    if (audio.paused) {
+      audio.play().catch((err) => {
+        console.log(err);
+        setIsPaused(true);
+      });
+    } else {
+      audio.pause();
+    }
+  };
 
   const handleDragStart = () => {
     setIsSeeking(true);
@@ -83,10 +106,29 @@ export const Book = () => {
     );
   };
 
+  const handlePrevClick = () => {
+    const index = books.findIndex((bookName) => {
+      return bookName === book;
+    });
+    navigate(`/books/${books[clamp(1, index - 1, 12)]}`);
+  };
+
+  const handleNextClick = () => {
+    const index = books.findIndex((bookName) => {
+      return bookName === book;
+    });
+    navigate(`/books/${books[clamp(1, index + 1, 11)]}`);
+  };
+
   return (
     <div className={styles.bookPage}>
       <Navigation />
-      <ActionBar />
+      <ActionBar
+        isPaused={isPaused}
+        onPrevClick={handlePrevClick}
+        onNextClick={handleNextClick}
+        onPlayToggle={handlePlayToggle}
+      />
 
       <h4 className={styles.title}>{title}</h4>
       <span className={styles.timeLeft}>

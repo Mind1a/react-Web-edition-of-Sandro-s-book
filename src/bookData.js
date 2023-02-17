@@ -70,3 +70,5 @@ export const bookData = {
     title: "უკვდავება",
   },
 };
+
+export const books = Object.keys(bookData);
