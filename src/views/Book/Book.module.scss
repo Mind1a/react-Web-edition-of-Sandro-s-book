@@ -1,5 +1,13 @@
 @import "../../scss/mixins";
 
+.bookPage {
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+}
+
 .title {
   @include position(20%, 5%);
   font-size: 2.75rem;
@@ -12,6 +20,7 @@
   height: 70%;
   mix-blend-mode: difference;
   filter: invert(1);
+  z-index: 0;
 }
 
 .timeLeft {

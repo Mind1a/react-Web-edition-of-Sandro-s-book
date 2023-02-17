@@ -1,12 +1,12 @@
 import { motion } from "framer-motion";
 import styles from "./Loader.module.scss";
-import { clamp } from "../../utils/book";
 import { useState, useEffect, useRef } from "react";
 
 export const Loader = ({
   width,
   trackProgress,
   transition,
+  handleTransition,
   isSeeking,
   onDragStart,
   onDragStop,
@@ -58,6 +58,9 @@ export const Loader = ({
       {trackProgress && (
         <motion.div
           ref={handleRef}
+          initial={{ opacity: 0, borderWidth: 0 }}
+          animate={{ opacity: 1, borderWidth: "8px" }}
+          transition={handleTransition}
           onMouseDown={handleDragStart}
           className={styles.handle}
           draggable={false}

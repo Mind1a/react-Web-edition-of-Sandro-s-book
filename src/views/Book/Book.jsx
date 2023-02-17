@@ -5,6 +5,9 @@ import { clamp, getTimeLeft, getWidth } from "../../utils/book";
 import styles from "./Book.module.scss";
 import { bookData } from "../../bookData";
 import { Navigation } from "../../components/Navigation";
+import { motion } from "framer-motion";
+import { ActionBar } from "../../components/ActionBar";
+
 export const Book = () => {
   const { book } = useParams();
 
@@ -25,8 +28,6 @@ export const Book = () => {
   const [seekTime, setSeekTime] = useState(null);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
-
-  console.log(title, illustration);
 
   useEffect(() => {
     audio.play().catch((err) => {
@@ -83,8 +84,9 @@ export const Book = () => {
   };
 
   return (
-    <div>
+    <div className={styles.bookPage}>
       <Navigation />
+      <ActionBar />
 
       <h4 className={styles.title}>{title}</h4>
       <span className={styles.timeLeft}>
@@ -95,16 +97,30 @@ export const Book = () => {
         src={illustration}
         alt="illustration"
       />
-      <Loader
-        trackProgress
-        initialWidth="100%"
-        width={`${width * 100}%`}
-        transition={{ duration: 0, ease: "easeOut" }}
-        isSeeking={isSeeking}
-        onDragStart={handleDragStart}
-        onDragStop={handleDragStop}
-        onDrag={handleDrag}
-      />
+      <motion.div
+        initial={{ opacity: 1 }}
+        animate={{ opacity: 0 }}
+        transition={{ delay: 1, duration: 0 }}
+        style={{ pointerEvents: "none" }}
+      >
+        <Loader width={["100%", "15%"]} />
+      </motion.div>
+      <motion.div
+        initial={{ display: 0 }}
+        animate={{ display: 1 }}
+        transition={{ duration: 0.8 }}
+      >
+        <Loader
+          trackProgress
+          width={`${width * 100}%`}
+          isSeeking={isSeeking}
+          transition={{ duration: 0 }}
+          handleTransition={{ duration: 0.2, delay: 0.8 }}
+          onDragStart={handleDragStart}
+          onDragStop={handleDragStop}
+          onDrag={handleDrag}
+        />
+      </motion.div>
     </div>
   );
 };
