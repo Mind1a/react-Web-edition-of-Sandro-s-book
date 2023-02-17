@@ -1,0 +1,32 @@
+@import "../../scss/mixins";
+
+.bookPage {
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+}
+
+.title {
+  @include position(20%, 5%);
+  font-size: 2.75rem;
+  mix-blend-mode: difference;
+  color: #fff;
+}
+
+.illustration {
+  @include position(50%, 50%, $centered: true);
+  height: 70%;
+  mix-blend-mode: difference;
+  filter: invert(1);
+  z-index: 0;
+}
+
+.timeLeft {
+  @include position($right: 0, $bottom: 0);
+  font-size: 3.2rem;
+  mix-blend-mode: difference;
+  color: #fff;
+  margin: 2rem;
+}

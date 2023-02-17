@@ -1,0 +1,20 @@
+@import "../../scss/mixins";
+
+.loaderAnimation {
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-color: #1c1c1c;
+  height: 100vh;
+  z-index: -1;
+}
+
+.handle {
+  @include position($right: 0, $bottom: 10%);
+  transform: translateX(50%);
+  width: 64px;
+  height: 64px;
+  background-color: #1c1c1c;
+  border: 8px solid #ffffff;
+  border-radius: 50%;
+}
