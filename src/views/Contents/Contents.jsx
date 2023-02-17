@@ -3,7 +3,7 @@ import styles from "./Contents.module.scss";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Loader } from "../../components/Loader/Loader";
-import { ContentsData } from "../../data";
+import { bookData } from "../../bookData";
 import { useNavigate } from "react-router-dom";
 
 const contentVariants = {
@@ -52,7 +52,7 @@ export const Contents = () => {
         </motion.div>
       </div>
       <div className={styles.contentContainer}>
-        <div className={styles.closeContent} onClick={()=>navigate(-1)}>
+        <div className={styles.closeContent} onClick={() => navigate(-1)}>
           <img src="assets/svgs/content-chapter-svg/closeBtn.svg" alt="" />
         </div>
         {contentPart === "content" && (
@@ -62,10 +62,10 @@ export const Contents = () => {
             transition={{ duration: 0.5 }}
             className={styles.contentChapter}
           >
-            {Object.entries(ContentsData).map(([id, { src, title, route }]) => (
-              <div key={id} className={styles.Chapter}>
-                <Link className={styles.chapterRoute} to={route} key={id}>
-                  <img src={src} alt={src} />
+            {Object.entries(bookData).map(([book, { img, title }]) => (
+              <div key={book} className={styles.Chapter}>
+                <Link className={styles.chapterRoute} to={`/books/${book}`} >
+                  <img src={img} alt={title} />
                   <span>{title}</span>
                 </Link>
               </div>

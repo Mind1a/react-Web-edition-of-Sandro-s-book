@@ -1,18 +1,32 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { useParams } from "react-router-dom";
 import { Loader } from "../../components/Loader/Loader";
 import { clamp, getTimeLeft, getWidth } from "../../utils/book";
 import styles from "./Book.module.scss";
+import { bookData } from "../../bookData";
+import { Navigation } from "../../components/Navigation";
 export const Book = () => {
   const { book } = useParams();
 
-  const [audio] = useState(new Audio(`/assets/mp3/${book}.mp3`));
+  const {
+    title,
+    illustration,
+    audio: audioSrc,
+  } = useMemo(() => {
+    console.log("memo");
+    return bookData[book];
+  }, [book]);
+
+  const audio = useMemo(() => new Audio(audioSrc), [book]);
+
   const [isSeeking, setIsSeeking] = useState(false);
   const [width, setWidth] = useState(0.15);
   const [seekStartTime, setSeekStartTime] = useState(null);
   const [seekTime, setSeekTime] = useState(null);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
+
+  console.log(title, illustration);
 
   useEffect(() => {
     audio.play().catch((err) => {
@@ -70,10 +84,17 @@ export const Book = () => {
 
   return (
     <div>
+      <Navigation />
+
+      <h4 className={styles.title}>{title}</h4>
       <span className={styles.timeLeft}>
-        Book View: {book} :{" "}
         {getTimeLeft(duration, isSeeking ? seekTime : currentTime)}
       </span>
+      <img
+        className={styles.illustration}
+        src={illustration}
+        alt="illustration"
+      />
       <Loader
         trackProgress
         initialWidth="100%"

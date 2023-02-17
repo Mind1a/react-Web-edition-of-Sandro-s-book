@@ -1,6 +1,22 @@
+@import "../../scss/mixins";
+
+.title {
+  @include position(20%, 5%);
+  font-size: 2.75rem;
+  mix-blend-mode: difference;
+  color: #fff;
+}
+
+.illustration {
+  @include position(50%, 50%, $centered: true);
+  height: 70%;
+  mix-blend-mode: difference;
+  filter: invert(1);
+}
+
 .timeLeft {
-  display: flex;
-  font-size: 2rem;
+  @include position($right: 0, $bottom: 0);
+  font-size: 3.2rem;
   mix-blend-mode: difference;
   color: #fff;
   margin: 2rem;

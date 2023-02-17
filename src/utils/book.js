@@ -6,8 +6,6 @@ export const getTimeLeft = (duration, currentTime) => {
 
   mins = mins < 10 ? "0" + mins : mins;
   secs = secs < 10 ? "0" + secs : secs;
-  console.log(mins, secs);
-  console.log(duration, currentTime);
   return `${mins}:${secs}`;
 };
 
