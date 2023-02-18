@@ -3,6 +3,7 @@
   height: 100vh;
   padding: 45px 70px 0px 70px;
   gap: 100px;
+
   .contents {
     display: flex;
     flex-direction: column;
@@ -14,6 +15,7 @@
       line-height: 29px;
       width: 165px;
       cursor: pointer;
+      font-family: "sandro-Bold", sans-serif;
       transition: 0.2s ease-in-out;
       &:hover {
         color: #999999;
