@@ -29,7 +29,7 @@ export const Home = () => {
       >
         <Navigation />
 
-        <Link to="/books/shexvedra-leviatantan" className={styles.playIcon}>
+        <Link to="/preface" className={styles.playIcon}>
           <motion.img
             whileHover={{ opacity: 0.45 }}
             src="assets/svgs/generic/playbutton-light.svg"

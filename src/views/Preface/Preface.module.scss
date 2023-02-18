@@ -1,1 +1,29 @@
 @import "../../scss/mixins";
+.prefacePage {
+  position: relative;
+}
+.prefaceMainPart {
+  h4 {
+    position: absolute;
+    @include position(20%, 0%);
+    font-size: 2.75rem;
+    mix-blend-mode: difference;
+    color: #fff;
+  }
+  .prefaceContent {
+    position: absolute;
+    @include position(20%, 17%, 2%);
+    color: white;
+    mix-blend-mode: difference;
+    padding-bottom: 40px;
+    .prefaceText {
+      p {
+        margin-bottom: 20px;
+        font-size: 15px;
+        // font-family: "sandro-Regular", sans-serif;
+        color: #fff;
+        line-height: 22px;
+      }
+    }
+  }
+}

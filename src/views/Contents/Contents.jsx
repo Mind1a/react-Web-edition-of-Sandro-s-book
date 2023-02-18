@@ -65,7 +65,10 @@ export const Contents = () => {
           >
             {Object.entries(bookData).map(([book, { img, title }]) => (
               <div key={book} className={styles.Chapter}>
-                <Link className={styles.chapterRoute} to={`/books/${book}`}>
+                <Link
+                  className={styles.chapterRoute}
+                  to={book === "preface" ? `/${book}` : `/books/${book}`}
+                >
                   <img src={img} alt={title} />
                   <span>{title}</span>
                 </Link>

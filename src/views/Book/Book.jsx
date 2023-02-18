@@ -110,7 +110,11 @@ export const Book = () => {
     const index = books.findIndex((bookName) => {
       return bookName === book;
     });
-    navigate(`/books/${books[clamp(1, index - 1, 12)]}`);
+    {
+      book === "qaosidan-kosmosamde"
+        ? navigate("/preface")
+        : navigate(`/books/${books[clamp(1, index - 1, 12)]}`);
+    }
   };
 
   const handleNextClick = () => {
