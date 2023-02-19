@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { Home } from "./views/Home";
 import { Contents } from "./views/Contents";
 import { Book } from "./views/Book";
@@ -7,14 +7,12 @@ import { Preface } from "./views/Preface/Preface";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/contents" element={<Contents />} />
-        <Route path="/preface" element={<Preface />} />
-        <Route path="/books/:book" element={<Book />} />
-      </Routes>
-    </BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/contents" element={<Contents />} />
+      <Route path="/preface" element={<Preface />} />
+      <Route path="/books/:book" element={<Book />} />
+    </Routes>
   );
 }
 

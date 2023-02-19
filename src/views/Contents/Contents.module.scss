@@ -3,16 +3,19 @@
   height: 100vh;
   padding: 45px 70px 0px 70px;
   gap: 100px;
+
   .contents {
     display: flex;
     flex-direction: column;
     gap: 70px;
+
     .contentTitles {
       font-size: 24px;
       color: #fff;
       line-height: 29px;
       width: 165px;
       cursor: pointer;
+      font-family: "sandro-Bold", sans-serif;
       transition: 0.2s ease-in-out;
       &:hover {
         color: #999999;
@@ -41,7 +44,7 @@
       grid-template-columns: auto auto auto;
       grid-column-gap: 140px;
       grid-row-gap: 70px;
-
+      padding-bottom: 40px;
       .Chapter {
         display: flex;
         justify-content: center;
@@ -83,28 +86,35 @@
         }
       }
     }
-    .pdfContent {
-      position: relative;
-      background-color: #181818;
-      width: 100%;
-      min-height: 360px;
-      padding: 10px;
-      transition: all 0.5s;
-      color: white;
-      h3 {
-        font-size: 24px;
-        font-family: "sandro-Bold", sans-serif;
-        color: #fff;
-        line-height: 30px;
-        font-weight: 600;
-      }
-      .downloadPDF {
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 170px;
-        padding-top: 50px;
-        cursor: pointer;
+    .contentPdfPage {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      padding-bottom: 40px;
+      .pdfContent {
+        position: relative;
+        background-color: #181818;
+        width: 1000px;
+        min-height: 360px;
+        padding: 10px;
+        transition: all 0.5s;
+        color: white;
+        h3 {
+          font-size: 24px;
+          font-family: "sandro-Bold", sans-serif;
+          color: #fff;
+          line-height: 30px;
+          font-weight: 600;
+        }
+        .downloadPDF {
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 170px;
+          padding-top: 50px;
+          cursor: pointer;
+        }
       }
     }
   }

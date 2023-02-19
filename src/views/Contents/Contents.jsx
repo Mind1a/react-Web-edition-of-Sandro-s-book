@@ -3,6 +3,7 @@ import styles from "./Contents.module.scss";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Loader } from "../../components/Loader/Loader";
+import { FliperBook } from "../../components/FliperBook";
 import { bookData } from "../../bookData";
 import { useNavigate } from "react-router-dom";
 
@@ -64,7 +65,10 @@ export const Contents = () => {
           >
             {Object.entries(bookData).map(([book, { img, title }]) => (
               <div key={book} className={styles.Chapter}>
-                <Link className={styles.chapterRoute} to={`/books/${book}`} >
+                <Link
+                  className={styles.chapterRoute}
+                  to={book === "preface" ? `/${book}` : `/books/${book}`}
+                >
                   <img src={img} alt={title} />
                   <span>{title}</span>
                 </Link>
@@ -120,22 +124,30 @@ export const Contents = () => {
           </motion.div>
         )}
         {contentPart === "bookPdfVersion" && (
-          <div className={styles.pdfContent}>
-            <h3>
-              გადმოიწერე წიგნის <span>PDF</span> ვერსია
-            </h3>
-            <div className={styles.downloadPDF}>
-              <a
-                href="https://fromchaostocosmos.sandroasatiani.com/SandroAsatiani_ChaosidanCosmosamde.pdf"
-                target="_blank"
-              >
-                <img
-                  src="assets/svgs/content-chapter-svg/PDFBookDownload.svg"
-                  alt="pdfBook"
-                />
-              </a>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className={styles.contentPdfPage}
+          >
+            <FliperBook />
+            <div className={styles.pdfContent}>
+              <h3>
+                გადმოიწერე წიგნის <span>PDF</span> ვერსია
+              </h3>
+              <div className={styles.downloadPDF}>
+                <a
+                  href="https://fromchaostocosmos.sandroasatiani.com/SandroAsatiani_ChaosidanCosmosamde.pdf"
+                  target="_blank"
+                >
+                  <img
+                    src="assets/svgs/content-chapter-svg/PDFBookDownload.svg"
+                    alt="pdfBook"
+                  />
+                </a>
+              </div>
             </div>
-          </div>
+          </motion.div>
         )}
       </div>
     </div>
