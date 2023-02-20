@@ -1,8 +1,23 @@
+@font-face {
+  font-family: "Sandro-Universal-Bold";
+  src: url("assets/fonts/SandroFont/SandroUniversal-Bold.otf");
+}
+
+@font-face {
+  font-family: "sandro-Regular";
+  src: url("assets/fonts/SandroFont/sandro-Regular.ttf");
+}
+
+@font-face {
+  font-family: "sandro-Bold";
+  src: url("assets/fonts/SandroFont/sandro-Bold.ttf");
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+  font-family: "sandro-Regular", sans-serif;
 }
 
 body {

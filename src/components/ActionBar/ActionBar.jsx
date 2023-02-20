@@ -8,6 +8,7 @@ export const ActionBar = ({
   onNextClick,
   isPaused,
   onPlayToggle,
+  preface,
 }) => {
   return (
     <div className={styles.actionBar}>
@@ -50,24 +51,29 @@ export const ActionBar = ({
         />
         <img src="/assets/svgs/generic/arrow-button.svg" alt="arrow button" />
       </button>
-      <motion.button
-        initial="idle"
-        whileHover="hovered"
-        className={styles.button}
-        onClick={onPlayToggle}
-      >
-        <motion.img
-          variants={iconVariants}
-          className={styles.icon}
-          src={
-            isPaused
-              ? "/assets/svgs/generic/play-icon.svg"
-              : "/assets/svgs/generic/pause-icon.svg"
-          }
-          alt="toggle"
-        />
-        <img src="/assets/svgs/generic/toggle-button.svg" alt="toggle button" />
-      </motion.button>
+      {!preface && (
+        <motion.button
+          initial="idle"
+          whileHover="hovered"
+          className={styles.button}
+          onClick={onPlayToggle}
+        >
+          <motion.img
+            variants={iconVariants}
+            className={styles.icon}
+            src={
+              isPaused
+                ? "/assets/svgs/generic/play-icon.svg"
+                : "/assets/svgs/generic/pause-icon.svg"
+            }
+            alt="toggle"
+          />
+          <img
+            src="/assets/svgs/generic/toggle-button.svg"
+            alt="toggle button"
+          />
+        </motion.button>
+      )}
     </div>
   );
 };

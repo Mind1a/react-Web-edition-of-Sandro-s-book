@@ -13,7 +13,7 @@
   background-color: #fff;
   border-radius: 50%;
   cursor: pointer;
-  img{
+  img {
     scale: 1.03;
   }
 }
@@ -22,8 +22,10 @@
   @include position(50%, 70%, $centered: true);
   color: #fff;
   mix-blend-mode: difference;
+  font-family: "Sandro-Universal-Bold";
 }
 
 .cosmosText {
   @include position($right: 3%, $bottom: 12%);
+  font-family: "Sandro-Universal-Bold";
 }
