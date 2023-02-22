@@ -1,0 +1,1 @@
+export { MobileMainPage } from "./MobileMainPage";
