@@ -8,6 +8,7 @@ import { Navigation } from "../../components/Navigation";
 import { motion } from "framer-motion";
 import { ActionBar } from "../../components/ActionBar";
 import { useNavigate } from "react-router-dom";
+import { useRelativeWidth } from "../../hooks/useRelativeWidth";
 
 export const Book = () => {
   const { book } = useParams();
@@ -26,7 +27,8 @@ export const Book = () => {
 
   const [isSeeking, setIsSeeking] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
-  const [width, setWidth] = useState(0.15);
+  const [initialWidth] = useRelativeWidth(233);
+  const [width, setWidth] = useState(initialWidth);
   const [seekStartTime, setSeekStartTime] = useState(null);
   const [seekTime, setSeekTime] = useState(null);
   const [duration, setDuration] = useState(0);
@@ -43,7 +45,7 @@ export const Book = () => {
 
       if (isSeeking || duration === 0) return;
 
-      setWidth(getWidth(0.15, duration, audio.currentTime));
+      setWidth(getWidth(initialWidth, duration, audio.currentTime));
     };
 
     const handleAudioLoad = () => {
@@ -72,7 +74,13 @@ export const Book = () => {
       audio.removeEventListener("canplaythrough", handleAudioLoad);
       audio.removeEventListener("ended", handleAudioEnd);
     };
-  }, [audio, book, isSeeking, duration]);
+  }, [audio, book, initialWidth, isSeeking, duration]);
+
+  useEffect(() => {
+    if (audio.paused) {
+      setWidth(getWidth(initialWidth, duration, currentTime));
+    }
+  }, [initialWidth]);
 
   const handlePlayToggle = () => {
     if (audio.paused) {
@@ -99,7 +107,11 @@ export const Book = () => {
 
   const handleDrag = (percentageChange) => {
     setWidth(
-      getWidth(0.15, duration, seekStartTime + percentageChange * duration)
+      getWidth(
+        initialWidth,
+        duration,
+        seekStartTime + percentageChange * duration
+      )
     );
     setSeekTime(
       clamp(0, seekStartTime + percentageChange * duration, duration)
@@ -149,7 +161,7 @@ export const Book = () => {
         transition={{ delay: 1, duration: 0 }}
         style={{ pointerEvents: "none" }}
       >
-        <Loader width={["100%", "15%"]} />
+        <Loader width={["100%", `${initialWidth * 100}%`]} />
       </motion.div>
       <motion.div
         initial={{ display: 0 }}
@@ -159,6 +171,7 @@ export const Book = () => {
         <Loader
           trackProgress
           width={`${width * 100}%`}
+          initialWidth={initialWidth}
           isSeeking={isSeeking}
           transition={{ duration: 0 }}
           handleTransition={{ duration: 0.2, delay: 0.8 }}

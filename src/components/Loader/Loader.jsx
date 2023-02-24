@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 
 export const Loader = ({
   width,
+  initialWidth,
   trackProgress,
   transition,
   handleTransition,
@@ -24,7 +25,7 @@ export const Loader = ({
     if (!isSeeking) return;
 
     const handle = handleRef.current;
-    const margin = window.innerWidth * 0.15;
+    const margin = window.innerWidth * initialWidth;
     onDragStop(
       (handle.parentNode.clientWidth - margin) / (window.innerWidth - margin)
     );
@@ -32,7 +33,7 @@ export const Loader = ({
 
   const handleDrag = (e) => {
     e.preventDefault();
-    const margin = window.innerWidth * 0.15;
+    const margin = window.innerWidth * initialWidth;
     if (e.buttons === 1 && isSeeking) {
       onDrag((e.clientX - initialX) / (window.innerWidth - margin));
     }

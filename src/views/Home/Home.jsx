@@ -10,14 +10,14 @@ export const Home = () => {
     <div>
       <Loader
         width={["100%", "0%", "0%", "50%"]}
-        transition={{ duration: 2.6 }}
+        transition={{ duration: 2.6, delay: 1 }}
       />
-      <ChaosLetters transition={{ delay: 1.5 }} />
+      <ChaosLetters transition={{ delay: 2.5 }} />
 
       <motion.img
         initial={{ opacity: 0 }}
         animate={{ opacity: [0, 1, 0] }}
-        transition={{ delay: 0.6, duration: 0.8 }}
+        transition={{ delay: 1.6, duration: 0.8 }}
         className={styles.eyeIcon}
         src="assets/svgs/generic/loader-icon.svg"
       />
@@ -25,7 +25,7 @@ export const Home = () => {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
+        transition={{ delay: 2.5 }}
       >
         <Navigation />
 
@@ -39,7 +39,7 @@ export const Home = () => {
         <motion.span
           initial={{ right: "3%", bottom: "12%", fontSize: "4.5rem" }}
           animate={{ right: "4%", bottom: "14%", fontSize: "6.25rem" }}
-          transition={{ delay: 1.5 }}
+          transition={{ delay: 2.5 }}
           className={styles.cosmosText}
         >
           კოსმოსამდე
