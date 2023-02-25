@@ -26,6 +26,7 @@ export const ActionBar = ({
           alt="download pdf"
         />
         <img
+          className={styles.buttonIcon}
           src="/assets/svgs/generic/download-button.svg"
           alt="download pdf button"
         />
@@ -49,7 +50,11 @@ export const ActionBar = ({
           alt="right arrow"
           onClick={onNextClick}
         />
-        <img src="/assets/svgs/generic/arrow-button.svg" alt="arrow button" />
+        <img
+          className={styles.buttonIcon}
+          src="/assets/svgs/generic/arrow-button.svg"
+          alt="arrow button"
+        />
       </button>
       {!preface && (
         <motion.button
@@ -83,6 +88,7 @@ export const ActionBar = ({
             />
           </motion.div>
           <img
+            className={styles.buttonIcon}
             src="/assets/svgs/generic/toggle-button.svg"
             alt="toggle button"
           />

@@ -1,16 +1,19 @@
 @font-face {
   font-family: "Sandro-Universal-Bold";
-  src: url("assets/fonts/SandroFont/SandroUniversal-Bold.otf");
+  src: url("/assets/fonts/SandroFont/SandroUniversal-Bold.otf");
+  font-display: swap;
 }
 
 @font-face {
   font-family: "sandro-Regular";
-  src: url("assets/fonts/SandroFont/sandro-Regular.ttf");
+  src: url("/assets/fonts/SandroFont/sandro-Regular.ttf");
+  font-display: swap;
 }
 
 @font-face {
   font-family: "sandro-Bold";
-  src: url("assets/fonts/SandroFont/sandro-Bold.ttf");
+  src: url("/assets/fonts/SandroFont/sandro-Bold.ttf");
+  font-display: swap;
 }
 
 * {

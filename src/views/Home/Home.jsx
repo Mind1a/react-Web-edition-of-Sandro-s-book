@@ -23,6 +23,7 @@ export const Home = () => {
         transition={{ delay: 0.6 + initialDelay, duration: 0.8 }}
         className={styles.eyeIcon}
         src="assets/svgs/generic/loader-icon.svg"
+        alt="eye"
       />
 
       <motion.div
@@ -36,6 +37,7 @@ export const Home = () => {
           <motion.img
             whileHover={{ opacity: 0.45 }}
             src="assets/svgs/generic/playbutton-light.svg"
+            alt="play button"
           />
         </Link>
         <span className={styles.playText}>დაწყება</span>

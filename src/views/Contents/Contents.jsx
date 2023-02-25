@@ -63,17 +63,24 @@ export const Contents = () => {
             transition={{ duration: 0.5 }}
             className={styles.contentChapter}
           >
-            {Object.entries(bookData).map(([book, { img, title }]) => (
-              <div key={book} className={styles.Chapter}>
-                <Link
-                  className={styles.chapterRoute}
-                  to={book === "preface" ? `/${book}` : `/books/${book}`}
-                >
-                  <img src={img} alt={title} />
-                  <span>{title}</span>
-                </Link>
-              </div>
-            ))}
+            {Object.entries(bookData).map(
+              ([book, { img, imgWidth, imgHeight, title }]) => (
+                <div key={book} className={styles.Chapter}>
+                  <Link
+                    className={styles.chapterRoute}
+                    to={book === "preface" ? `/${book}` : `/books/${book}`}
+                  >
+                    <img
+                      src={img}
+                      alt={title}
+                      width={imgWidth}
+                      height={imgHeight}
+                    />
+                    <span>{title}</span>
+                  </Link>
+                </div>
+              )
+            )}
           </motion.div>
         )}
         {contentPart === "aboutProject" && (
