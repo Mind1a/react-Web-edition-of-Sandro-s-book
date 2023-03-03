@@ -7,6 +7,15 @@
   margin: 40px;
   margin-bottom: 0;
   flex-direction: column;
+  z-index: 1;
+}
+
+.homeLink {
+  z-index: 1;
+  img {
+    width: 121px;
+    height: 121px;
+  }
 }
 
 .navGroup {
@@ -28,6 +37,10 @@
 
 .burgerButton {
   all: unset;
+  img {
+    width: 61px;
+    height: 61px;
+  }
 }
 
 .shareLink {
@@ -40,4 +53,11 @@
 
 .instagramLink {
   transform: translate(-1px, -1px);
+}
+
+.shareButton,
+.facebookButton,
+.instagramButton {
+  width: 61px;
+  height: 61px;
 }

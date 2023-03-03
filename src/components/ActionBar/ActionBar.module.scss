@@ -15,6 +15,7 @@
   cursor: pointer;
   z-index: 1;
   width: fit-content;
+
 }
 
 .rightArrow,
@@ -32,4 +33,9 @@
 
 .icon {
   @include position(50%, 50%, $centered: true);
+}
+
+.buttonIcon{
+  width: 121px;
+  height: 121px;
 }

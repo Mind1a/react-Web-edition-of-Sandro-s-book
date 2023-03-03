@@ -10,7 +10,7 @@ export const Navigation = () => {
   return (
     <nav className={styles.navigation}>
       <a href="/" className={styles.homeLink}>
-        <img src="/assets/svgs/social-links/publish-icon.svg" />
+        <img src="/assets/svgs/social-links/publish-icon.svg" alt="home" />
       </a>
       <div className={styles.navGroup}>
         <MotionLink
@@ -23,8 +23,12 @@ export const Navigation = () => {
             variants={iconVariants}
             className={styles.buttonIcon}
             src="/assets/svgs/social-links/burger.svg"
+            alt="burger menu"
           />
-          <img src="/assets/svgs/social-links/burger-button.svg" />
+          <img
+            src="/assets/svgs/social-links/burger-button.svg"
+            alt="burger menu button"
+          />
         </MotionLink>
         <motion.a
           href="https://sandroasatiani.com/"
@@ -37,10 +41,12 @@ export const Navigation = () => {
             variants={iconVariants}
             className={styles.buttonIcon}
             src="/assets/svgs/social-links/share.svg"
+            alt="share"
           />
           <img
             className={styles.shareButton}
             src="/assets/svgs/social-links/share-button.svg"
+            alt="share button"
           />
         </motion.a>
         <motion.a
@@ -54,8 +60,13 @@ export const Navigation = () => {
             variants={iconVariants}
             className={styles.buttonIcon}
             src="/assets/svgs/social-links/facebook.svg"
+            alt="facebook"
           />
-          <img src="/assets/svgs/social-links/facebook-button.svg" />
+          <img
+            className={styles.facebookButton}
+            src="/assets/svgs/social-links/facebook-button.svg"
+            alt="facebook button"
+          />
         </motion.a>
 
         <motion.a
@@ -69,10 +80,12 @@ export const Navigation = () => {
             variants={iconVariants}
             className={styles.buttonIcon}
             src="/assets/svgs/social-links/instagram.svg"
+            alt="instagram"
           />
           <img
             className={styles.instagramButton}
             src="/assets/svgs/social-links/instagram-button.svg"
+            alt="instagram button"
           />
         </motion.a>
       </div>

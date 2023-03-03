@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./ActionBar.module.scss";
 import { motion } from "framer-motion";
 import { iconVariants } from "./ActionBar.variants";
@@ -26,6 +26,7 @@ export const ActionBar = ({
           alt="download pdf"
         />
         <img
+          className={styles.buttonIcon}
           src="/assets/svgs/generic/download-button.svg"
           alt="download pdf button"
         />
@@ -49,7 +50,11 @@ export const ActionBar = ({
           alt="right arrow"
           onClick={onNextClick}
         />
-        <img src="/assets/svgs/generic/arrow-button.svg" alt="arrow button" />
+        <img
+          className={styles.buttonIcon}
+          src="/assets/svgs/generic/arrow-button.svg"
+          alt="arrow button"
+        />
       </button>
       {!preface && (
         <motion.button
@@ -58,17 +63,32 @@ export const ActionBar = ({
           className={styles.button}
           onClick={onPlayToggle}
         >
-          <motion.img
-            variants={iconVariants}
-            className={styles.icon}
-            src={
-              isPaused
-                ? "/assets/svgs/generic/play-icon.svg"
-                : "/assets/svgs/generic/pause-icon.svg"
-            }
-            alt="toggle"
-          />
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={isPaused ? { opacity: 1 } : { opacity: 0 }}
+            transition={{ duration: 0.1 }}
+          >
+            <motion.img
+              variants={iconVariants}
+              className={styles.icon}
+              src={"/assets/svgs/generic/play-icon.svg"}
+              alt="toggle"
+            />
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={isPaused ? { opacity: 0 } : { opacity: 1 }}
+            transition={{ duration: 0.1 }}
+          >
+            <motion.img
+              variants={iconVariants}
+              className={styles.icon}
+              src={"/assets/svgs/generic/pause-icon.svg"}
+              alt="toggle"
+            />
+          </motion.div>
           <img
+            className={styles.buttonIcon}
             src="/assets/svgs/generic/toggle-button.svg"
             alt="toggle button"
           />

@@ -11,7 +11,7 @@ export const getTimeLeft = (duration, currentTime) => {
 
 export const getWidth = (min, duration, currentTime) => {
   if (currentTime < 0 || duration < 0) return min;
-  const percentage = clamp(0.15, (currentTime / duration) * (1 - min) + min, 1);
+  const percentage = clamp(min, (currentTime / duration) * (1 - min) + min, 1);
   return isNaN(percentage) ? min : percentage;
 };
 
