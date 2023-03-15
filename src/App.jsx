@@ -7,9 +7,9 @@ import { Preface } from "./views/Preface/Preface";
 import { MobileMainPage } from "./views/Mobile/MobileMainPage";
 import { useDeviceSize } from "./context/DeviceSizeProvider";
 
+const deviceSize = "xs";
 export default function App() {
   const deviceSize = useDeviceSize();
-
   return (
     <div>
       <Routes>

@@ -1,11 +1,36 @@
-import React, { version, useRef } from "react";
-import { Link } from "react-router-dom";
+import React, { useRef, useEffect } from "react";
 import styles from "./MobileMainPage.module.scss";
-import { bookData } from "../../../bookData";
+import { bookData, books } from "../../../bookData";
+import { Loader } from "../../../components/Loader/Loader";
+import { useState } from "react";
+import { useBookPlayer } from "../../../hooks/useBookPlayer";
+import { clamp, getTimeLeft } from "../../../utils/book";
+
+const swipeMargin = 50;
+
 export const MobileMainPage = () => {
+  const [book, setBook] = useState("qaosidan-kosmosamde");
   const sectionRef = useRef(null);
   const prefaceRef = useRef(null);
   const playerRef = useRef(null);
+  const soundButtonsRef = useRef(null);
+  const [prevTouchX, setPrevTouchX] = useState(null);
+
+  const {
+    width,
+    initialWidth,
+    duration,
+    currentTime,
+    seekTime,
+    isSeeking,
+    isPaused,
+    handleDrag,
+    handleDragStart,
+    handleDragStop,
+    handlePlayToggle,
+    handleNextClick,
+    handlePrevClick,
+  } = useBookPlayer(book, bookData, books, 32);
 
   function scrollToSection() {
     sectionRef.current.scrollIntoView({ behavior: "smooth" });
@@ -17,32 +42,77 @@ export const MobileMainPage = () => {
     playerRef.current.scrollIntoView({ behavior: "smooth" });
   }
 
+  const handleTouchStart = (e) => {
+    setPrevTouchX(e.touches[0].clientX);
+  };
+
+  const handleTouchEnd = (e) => {
+    if (e.changedTouches[0].clientX - prevTouchX > swipeMargin) {
+      handleSwipeRight();
+    } else if (e.changedTouches[0].clientX - prevTouchX < swipeMargin * -1) {
+      handleSwipeLeft();
+    }
+  };
+
+  const handleSwipeLeft = () => {
+    const index = books.findIndex((bookName) => {
+      return bookName === book;
+    });
+    setBook(books[clamp(1, index - 1, books.length - 1)]);
+  };
+
+  const handleSwipeRight = () => {
+    const index = books.findIndex((bookName) => {
+      return bookName === book;
+    });
+    setBook(books[clamp(1, index + 1, books.length - 1)]);
+  };
+
+  useEffect(() => {
+    if (!soundButtonsRef.current) return;
+
+    soundButtonsRef.current.addEventListener("touchstart", handleTouchStart);
+    soundButtonsRef.current.addEventListener("touchend", handleTouchEnd);
+
+    return () => {
+      soundButtonsRef.current.removeEventListener(
+        "touchstart",
+        handleTouchStart
+      );
+      soundButtonsRef.current.removeEventListener("touchend", handleTouchEnd);
+    };
+  }, [soundButtonsRef, prevTouchX]);
+
   const ChapterImages = () => {
-    const chapters = Object.values(bookData).map((chapter, index) => {
-      const imgSrc = `/assets/svgs/responsive-svg-TOC/${index + 1}.svg`;
-      return (
-        <div
-          onClick={
-            chapter.title === "წინასიტყვაობა" ? scrollToPreface : scrollToPlayer
-          }
-          className={styles.contents}
-          key={index}
-        >
-          <div className={styles.contentsChild}>
-            <div className={styles.chapter}>
-              <a>{chapter.title}</a>
-            </div>
-            <div className={styles.spanIconContents}>
-              <img
-                key={chapter.title}
-                src={imgSrc}
-                alt={`Chapter ${index + 1}`}
-              />
+    const chapters = Object.entries(bookData).map(
+      ([book, { title }], index) => {
+        const imgSrc = `/assets/svgs/responsive-svg-TOC/${index + 1}.svg`;
+        return (
+          <div
+            onClick={() => {
+              if (title === "წინასიტყვაობა") {
+                scrollToPreface();
+              } else {
+                scrollToPlayer();
+              }
+
+              setBook(book);
+            }}
+            className={styles.contents}
+            key={index}
+          >
+            <div className={styles.contentsChild}>
+              <div className={styles.chapter}>
+                <a>{title}</a>
+              </div>
+              <div className={styles.spanIconContents}>
+                <img key={title} src={imgSrc} alt={`Chapter ${index + 1}`} />
+              </div>
             </div>
           </div>
-        </div>
-      );
-    });
+        );
+      }
+    );
 
     return <>{chapters}</>;
   };
@@ -166,7 +236,7 @@ export const MobileMainPage = () => {
             target="_blank"
           >
             <img
-              src="assets/svgs/content-chapter-svg/PDFBookDownload.svg"
+              src="/assets/svgs/content-chapter-svg/PDFBookDownload.svg"
               alt="pdfBook"
             />
           </a>
@@ -266,7 +336,7 @@ export const MobileMainPage = () => {
       <section ref={playerRef} className={styles.MobilePlayer}>
         <div className={styles.mobileSoundContent}>
           <div className={styles.titleBurgerWrapper}>
-            <h2 className={styles.playerTitle}>ქაოსიდან კოსმოსამდე</h2>
+            <h2 className={styles.playerTitle}>{bookData[book].title}</h2>
             <button onClick={scrollToSection}>
               <div className={styles.playerBurger}>
                 <svg
@@ -284,10 +354,33 @@ export const MobileMainPage = () => {
               </div>
             </button>
           </div>
-          <div className={styles.soundButtons}></div>
-          <div className={styles.playerLoader}></div>
-          <div className={styles.timerContent}>
-            <div className={styles.timeLeft}>05.28</div>
+          <div className={styles.soundButtons} ref={soundButtonsRef}>
+            <img
+              onClick={handlePlayToggle}
+              src={`/assets/svgs/generic/${isPaused ? "play" : "pause"}.svg`}
+              alt="toggle playback"
+              className={styles.togglePlaybackImage}
+            />
+          </div>
+          <div className={styles.playerBottomBar}>
+            <Loader
+              mobile
+              trackProgress
+              width={`${width * 100}%`}
+              initialWidth={initialWidth}
+              isSeeking={isSeeking}
+              transition={{ duration: 0 }}
+              handleTransition={{ duration: 0.2, delay: 0.8 }}
+              onDragStart={handleDragStart}
+              onDragStop={handleDragStop}
+              onDrag={handleDrag}
+            />
+
+            <div className={styles.timerContent}>
+              <span className={styles.timeLeft}>
+                {getTimeLeft(duration, isSeeking ? seekTime : currentTime)}
+              </span>
+            </div>
           </div>
         </div>
       </section>

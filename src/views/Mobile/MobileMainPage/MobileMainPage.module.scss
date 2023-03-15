@@ -204,9 +204,16 @@
   }
   .MobilePlayer {
     padding: 30px 0;
-    min-height: 100vh;
+    height: 100vh;
     background-color: #181818;
+    max-width: 100vw;
+    overflow: hidden;
     .mobileSoundContent {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      box-sizing: border-box;
+
       .titleBurgerWrapper {
         display: flex;
         justify-content: space-between;
@@ -229,6 +236,17 @@
         }
       }
       .soundButtons {
+        display: flex;
+        justify-content: center;
+        height: 100%;
+        align-items: center;
+        .togglePlaybackImage {
+          width: 250px;
+          height: 250px;
+        }
+      }
+      .playerBottomBar {
+        margin-top: auto;
       }
       .playerLoader {
         height: 125px;
