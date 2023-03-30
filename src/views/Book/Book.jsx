@@ -42,7 +42,6 @@ export const Book = () => {
 
       <h4 className={styles.title}>
         {title}
-        {seekTime}
       </h4>
 
       <span className={styles.timeLeft}>

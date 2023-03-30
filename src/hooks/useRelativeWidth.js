@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 const getRelativeWidth = (absoluteWidth) => {
-  return absoluteWidth / window.innerWidth;
+  return absoluteWidth / document.getElementById("root").clientWidth;
 };
 
 export const useRelativeWidth = (absoluteWidth) => {
