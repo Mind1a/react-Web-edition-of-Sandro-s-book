@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import ChaosLetters from "../../components/ChaosLetters/ChaosLetters";
 import { Link } from "react-router-dom";
 
-const initialDelay = .25;
+const initialDelay = 0.25;
 
 export const Home = () => {
   return (
@@ -33,7 +33,7 @@ export const Home = () => {
       >
         <Navigation />
 
-        <Link to="/preface" className={styles.playIcon}>
+        <Link to="/books/qaosidan-kosmosamde" className={styles.playIcon}>
           <motion.img
             whileHover={{ opacity: 0.45 }}
             src="assets/svgs/generic/playbutton-light.svg"
