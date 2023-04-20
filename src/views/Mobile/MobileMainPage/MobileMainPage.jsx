@@ -75,11 +75,13 @@ export const MobileMainPage = () => {
     soundButtonsRef.current.addEventListener("touchend", handleTouchEnd);
 
     return () => {
-      soundButtonsRef.current.removeEventListener(
-        "touchstart",
-        handleTouchStart
-      );
-      soundButtonsRef.current.removeEventListener("touchend", handleTouchEnd);
+      soundButtonsRef.current &&
+        soundButtonsRef.current.removeEventListener(
+          "touchstart",
+          handleTouchStart
+        );
+      soundButtonsRef.current &&
+        soundButtonsRef.current.removeEventListener("touchend", handleTouchEnd);
     };
   }, [soundButtonsRef, prevTouchX]);
 
@@ -268,7 +270,7 @@ export const MobileMainPage = () => {
               ვითარდება, ჩვენ, ადამიანები, ჯერ კიდევ ვცხოვრობთ უძველესი
               არაცნობიერი არქეტიპების რეალობაში, სანდრო ცდილობს, ეს არქეტიპები
               ციფრულ სამყაროში აღმოაჩინოს და, თუ შესაძლებელია, მათი ახალი,
-              თანამედროვე ტექნოლოგიებს მისადაგებული ვერსია გამოიგონოს.{" "}
+              თანამედროვე ტექნოლოგიებს მისადაგებული ვერსია გამოიგონოს.
               <span>«hevel havalim»</span> — გაკვრით ამბობს ამ ფრაზას კრეატიული
               რეკლამის შემქმნელი და ჩვენ გვესმის ექო ათასეული წლების წინ
               დაწერილი ტექსტისა. სინამდვილეში, კაცობრიობის არაცნობიერში

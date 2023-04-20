@@ -39,11 +39,7 @@ export const Book = () => {
         onNextClick={handleNextClick}
         onPlayToggle={handlePlayToggle}
       />
-
-      <h4 className={styles.title}>
-        {title}
-      </h4>
-
+      <h4 className={styles.title}>{title}</h4>
       <span className={styles.timeLeft}>
         {getTimeLeft(duration, isSeeking ? seekTime : currentTime)}
       </span>
