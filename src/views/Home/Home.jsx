@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import { Loader } from "../../components/Loader/Loader";
 import { Navigation } from "../../components/Navigation";
 import styles from "./Home.module.scss";
